@@ -1,18 +1,14 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-//import 'package:magic_sdk/magic_sdk.dart';
+import 'package:magic_sdk/magic_sdk.dart';
 import 'package:magic_sdk/modules/web3/magic_credential.dart';
 import 'package:web3dart/web3dart.dart';
-
-import 'package:flutter/foundation.dart';
-import '../magic_sdk-0.5.0/lib/magic_sdk.dart'
 
 void main() {
   runApp(const MyApp());
 
-  const String apiKey = "$APIKEY';
+  const String apiKey = "APIKEY";
   const String rpcUrl = 'https://rpc-mumbai.matic.today';
   const int chainId = 80001;
 
@@ -34,21 +30,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        home: Stack(children: [
+      MaterialApp(
+        title: 'Flutter Demo Home Page',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.blue,
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+      Magic.instance.relayer
+    ]));
   }
 }
 
@@ -83,7 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
     debugPrint(magic.toString());
     debugPrint("getAccount");
     debugPrint(credential.toString());
-    debugPrint(magic.auth.toString());
 
     // try {
     //   debugPrint("loginwithSMS");
@@ -95,9 +93,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     try {
       debugPrint("loginwithMagicLink");
+      debugPrint(magic.auth.toString());
 
       var linkauth = await magic.auth
-          .loginWithMagicLink(email: 'tim@fong888.com', showUI: false);
+          .loginWithMagicLink(email: 'timfong888@gmail.com', showUI: false);
       debugPrint("after await $linkauth");
     } catch (e) {
       debugPrint("error: $e");
