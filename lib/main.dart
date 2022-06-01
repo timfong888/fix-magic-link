@@ -12,7 +12,7 @@ import '../magic_sdk-0.5.0/lib/magic_sdk.dart'
 void main() {
   runApp(const MyApp());
 
-  const String apiKey = "$APIKEY';
+  const String apiKey = '$APIKEY';
   const String rpcUrl = 'https://rpc-mumbai.matic.today';
   const int chainId = 80001;
 
