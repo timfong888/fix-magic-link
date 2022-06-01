@@ -8,7 +8,11 @@ import 'package:web3dart/web3dart.dart';
 void main() {
   runApp(const MyApp());
 
+<<<<<<< HEAD
   const String apiKey = "APIKEY";
+=======
+  const String apiKey = '$APIKEY';
+>>>>>>> acace29dafd902b11674e3beca5eb7d0a398db68
   const String rpcUrl = 'https://rpc-mumbai.matic.today';
   const int chainId = 80001;
 
